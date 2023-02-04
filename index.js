@@ -110,8 +110,8 @@ async function addDepartment() {
       name: "deptAdd",
       message: "What department do you want to add?",
     }]);
-  const newDeptTable = await db.query(`INSERT INTO department(name) VALUES ("${res.deptAdd}")`);
-  console.log("New department added!");
+  await db.query(`INSERT INTO department(name) VALUES ("${res.deptAdd}")`);
+  console.log(`\nNew department added!\n`);
   promptUser();
 };
 
@@ -128,13 +128,88 @@ async function addRole() {
       message: "What is the salary for this role?",
     },
     {
-      type: "input",
-      name: "roleDept",
-      message: "What department does this role belong to?", // COME BACK HERE TO FIX
+      type: 'list',
+      name: 'roleDept',
+      message: 'What department does this role belong to?',
+      choices: [
+        'Sales',
+        'Engineering',
+        'Finance',
+        'Legal'
+      ] // THIS IS PLACEHOLDER AND SHOULD POPULATE FROM THE DB
     }
   ]);
-  const newRoleTable = await db.query(`INSERT INTO role(title) VALUES ("${res.roleAdd}")`);
-  console.log("New role added!");
+  
+  if (res.RoleDept === "Sales") {
+    await db.query(`INSERT INTO role(title, salary, department_id) VALUES ("${res.roleAdd}", "${res.roleSalary}", ${1})`)};
+  if (res.RoleDept === "Engineering") {
+    await db.query(`INSERT INTO role(title, salary, department_id) VALUES ("${res.roleAdd}", "${res.roleSalary}", ${2})`)};
+  if (res.RoleDept === "Finance") {
+    await db.query(`INSERT INTO role(title, salary, department_id) VALUES ("${res.roleAdd}", "${res.roleSalary}", ${3})`)};
+  if (res.RoleDept === "Legal") {
+    await db.query(`INSERT INTO role(title, salary, department_id) VALUES ("${res.roleAdd}", "${res.roleSalary}", ${4})`)};
+
+  console.log(`\n New role added!\n`);
+  promptUser();
+};
+
+async function addEmployee() {
+  const res = await inquirer.prompt([
+    {
+      type: "input",
+      name: "firstAdd",
+      message: "What is the first name of your new employee?",
+    },
+    {
+      type: "input",
+      name: "lastAdd",
+      message: "What is the last name of your new employee?",
+    },
+    {
+      type: "list",
+      name: "empRole",
+      message: "What role applies to this employee?", // NEEDS HELP
+      choices: [
+        'Sales Lead',
+        'Salesperson',
+        'Lead Engineer',
+        'Software Engineer',
+        'Account Manager',
+        'Accountant',
+        'Legal Team Lead',
+        'Lawyer'
+      ] // PLACEHOLDER; SHOULD POPULATE FROM DB
+    },
+    {
+      type: "list",
+      name: "empMan",
+      message: "What manager does this employee report to?", // NEEDS HELP
+      choices: [
+        'John Sierra',
+        'Ashley Martinez',
+        'Kunal Chara',
+        'Sarah Totten'
+      ]
+    }
+  ]);
+  if (res.empRole === "Sales Lead") {
+    await db.query(`INSERT INTO employee(first_name, last_name, role_id, manager_id) VALUES ("${res.firstAdd}", "${res.lastAdd}", ${1}, ${null})`)};
+  if (res.empRole === "Salesperson") {
+    await db.query(`INSERT INTO employee(first_name, last_name, role_id, manager_id) VALUES ("${res.firstAdd}", "${res.lastAdd}", ${2}, ${1})`)};
+  if (res.empRole === "Lead Engineer") {
+    await db.query(`INSERT INTO employee(first_name, last_name, role_id, manager_id) VALUES ("${res.firstAdd}", "${res.lastAdd}", ${3}, ${null})`)};
+  if (res.empRole === "Software Engineer") {
+    await db.query(`INSERT INTO employee(first_name, last_name, role_id, manager_id) VALUES ("${res.firstAdd}", "${res.lastAdd}", ${4}, ${3})`)};
+  if (res.empRole === "Account Manager") {
+    await db.query(`INSERT INTO employee(first_name, last_name, role_id, manager_id) VALUES ("${res.firstAdd}", "${res.lastAdd}", ${5}, ${null})`)};
+  if (res.empRole === "Accountant") {
+    await db.query(`INSERT INTO employee(first_name, last_name, role_id, manager_id) VALUES ("${res.firstAdd}", "${res.lastAdd}", ${6}, ${5})`)};
+  if (res.empRole === "Legal Team Lead") {
+    await db.query(`INSERT INTO employee(first_name, last_name, role_id, manager_id) VALUES ("${res.firstAdd}", "${res.lastAdd}", ${7}, ${null})`)};
+  if (res.empRole === "Lawyer") {
+    await db.query(`INSERT INTO employee(first_name, last_name, role_id, manager_id) VALUES ("${res.firstAdd}", "${res.lastAdd}", ${8}, ${7})`)};
+
+  console.log(`\n New employee added!\n`);
   promptUser();
 };
 

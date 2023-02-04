@@ -2,4 +2,4 @@
 Manage and view a company's employee database using Node.
 
 ## Collaborators
-Michael Smith
+Michael Smith, Erin Peifer, Magdalene Zernick
