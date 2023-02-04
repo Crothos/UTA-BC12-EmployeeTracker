@@ -130,7 +130,7 @@ async function addRole() {
     {
       type: "input",
       name: "roleDept",
-      message: "What department does this role belong to?",
+      message: "What department does this role belong to?", // COME BACK HERE TO FIX
     }
   ]);
   const newRoleTable = await db.query(`INSERT INTO role(title) VALUES ("${res.roleAdd}")`);
