@@ -13,6 +13,10 @@ const db = mysql.createConnection (
   console.log(`Connected to the employee database.`)
 );
 
+// Helps fix promise errors
+const utils = require("util");
+db.query = utils.promisify(db.query)
+
 // Primary Prompt
 const promptUser = () => {
     inquirer.prompt([
@@ -98,6 +102,41 @@ function displayEmployees() {
     promptUser();
   });
 }
+
+async function addDepartment() {
+  const res = await inquirer.prompt([
+    {
+      type: "input",
+      name: "deptAdd",
+      message: "What department do you want to add?",
+    }]);
+  const newDeptTable = await db.query(`INSERT INTO department(name) VALUES ("${res.deptAdd}")`);
+  console.log("New department added!");
+  promptUser();
+};
+
+async function addRole() {
+  const res = await inquirer.prompt([
+    {
+      type: "input",
+      name: "roleAdd",
+      message: "What role do you want to add?",
+    },
+    {
+      type: "input",
+      name: "roleSalary",
+      message: "What is the salary for this role?",
+    },
+    {
+      type: "input",
+      name: "roleDept",
+      message: "What department does this role belong to?",
+    }
+  ]);
+  const newRoleTable = await db.query(`INSERT INTO role(title) VALUES ("${res.roleAdd}")`);
+  console.log("New role added!");
+  promptUser();
+};
 
 // Function to display hello on initialize.
  const init = () => {
