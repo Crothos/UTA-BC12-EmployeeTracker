@@ -44,7 +44,7 @@ const promptUser = () => {
         addEmployee();
       }
       if (choices === 'Update Employee Role') {
-        UpdateEmployee();
+        updateEmployee();
       }
       if (choices === 'View All Roles') {
         displayRoles();
@@ -140,13 +140,13 @@ async function addRole() {
     }
   ]);
   
-  if (res.RoleDept === "Sales") {
+  if (res.roleDept === "Sales") {
     await db.query(`INSERT INTO role(title, salary, department_id) VALUES ("${res.roleAdd}", "${res.roleSalary}", ${1})`)};
-  if (res.RoleDept === "Engineering") {
+  if (res.roleDept === "Engineering") {
     await db.query(`INSERT INTO role(title, salary, department_id) VALUES ("${res.roleAdd}", "${res.roleSalary}", ${2})`)};
-  if (res.RoleDept === "Finance") {
+  if (res.roleDept === "Finance") {
     await db.query(`INSERT INTO role(title, salary, department_id) VALUES ("${res.roleAdd}", "${res.roleSalary}", ${3})`)};
-  if (res.RoleDept === "Legal") {
+  if (res.roleDept === "Legal") {
     await db.query(`INSERT INTO role(title, salary, department_id) VALUES ("${res.roleAdd}", "${res.roleSalary}", ${4})`)};
 
   console.log(`\n New role added!\n`);
