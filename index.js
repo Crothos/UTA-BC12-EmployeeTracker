@@ -64,7 +64,7 @@ const promptUser = () => {
     })
 }
 
-
+// DISPLAYS ALL DEPARTMENTS
 function displayDepartments() {
   db.query('SELECT id, name AS "Name" FROM employee_db.department', function (err, results) {
     console.table(results);
@@ -72,6 +72,7 @@ function displayDepartments() {
   });
 }
 
+// DISPLAYS ALL ROLES
 function displayRoles() {
   db.query(`SELECT role.id,
             role.title,
@@ -84,6 +85,7 @@ function displayRoles() {
   });
 }
 
+// DISPLAYS ALL EMPLOYEES
 function displayEmployees() {
   db.query(`
   SELECT a.id,
@@ -103,6 +105,7 @@ function displayEmployees() {
   });
 }
 
+// ADDS A DEPARTMENT
 async function addDepartment() {
   const res = await inquirer.prompt([
     {
@@ -115,6 +118,7 @@ async function addDepartment() {
   promptUser();
 };
 
+// ADDS A ROLE
 async function addRole() {
   const res = await inquirer.prompt([
     {
@@ -153,6 +157,7 @@ async function addRole() {
   promptUser();
 };
 
+// ADDS AN EMPLOYEE
 async function addEmployee() {
   const res = await inquirer.prompt([
     {
@@ -189,7 +194,7 @@ async function addEmployee() {
         'Ashley Martinez',
         'Kunal Chara',
         'Sarah Totten'
-      ]
+      ] // PLACEHOLDER; SHOULD POPULATE FROM DB
     }
   ]);
   if (res.empRole === "Sales Lead") {
@@ -213,6 +218,11 @@ async function addEmployee() {
   promptUser();
 };
 
+// UPDATES AN EMPLOYEE
+async function updateEmployee() {
+
+}
+
 // Function to display hello on initialize.
  const init = () => {
     console.log("///////////////////////////////////"),
@@ -230,7 +240,8 @@ const goodBye = () => {
   console.log("/                                 /"),
   console.log("/            GOODBYE!             /"),
   console.log("/                                 /"),
-  console.log("///////////////////////////////////")
+  console.log("///////////////////////////////////");
+  process.exit();
 };
 
 // Initialize function call
