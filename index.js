@@ -220,8 +220,74 @@ async function addEmployee() {
 
 // UPDATES AN EMPLOYEE
 async function updateEmployee() {
+  const res = await inquirer.prompt([
+    {
+      type: "list",
+      name: "empChange",
+      message: "Which employee would you like to change?",
+      choices: [
+        'John Sierra',
+        'Mike Hawkins',
+        'Ashley Martinez',
+        'Kevin Lincoln',
+        'Kunal Chara',
+        'Malia Goodwin',
+        'Sarah Totten',
+        'Tom Leal'
+      ]
+    },
+    {
+      type: "list",
+      name: "changeRole",
+      message: "What role is being assigned?",
+      choices: [
+        'Sales Lead',
+        'Salesperson',
+        'Lead Engineer',
+        'Software Engineer',
+        'Account Manager',
+        'Accountant',
+        'Legal Team Lead',
+        'Lawyer'] // NEEDS UPDATING
+    }
+  ])
+  if (res.changeRole === "Sales Lead") {
+    role = 1};
+  if (res.changeRole === "Salesperson") {
+    role = 2};
+  if (res.changeRole === "Lead Engineer") {
+    role = 3};
+  if (res.changeRole === "Software Engineer") {
+    role = 4};
+  if (res.changeRole === "Account Manager") {
+    role = 5};
+  if (res.changeRole === "Accountant") {
+    role = 6};
+  if (res.changeRole === "Legal Team Lead") {
+    role = 7};
+  if (res.changeRole === "Lawyer") {
+    role = 8};
 
-}
+  if (res.empChange === "John Sierra") {
+    await db.query(`UPDATE employee SET role_id = ${role} WHERE id = ${1}`)};
+  if (res.empChange === "Mike Hawkins") {
+    await db.query(`UPDATE employee SET role_id = ${role} WHERE id = ${2}`)};
+  if (res.empChange === "Ashley Martinez") {
+    await db.query(`UPDATE employee SET role_id = ${role} WHERE id = ${3}`)};
+  if (res.empChange === "Kevin Lincoln") {
+    await db.query(`UPDATE employee SET role_id = ${role} WHERE id = ${4}`)};
+  if (res.empChange === "Kunal Chara") {
+    await db.query(`UPDATE employee SET role_id = ${role} WHERE id = ${5}`)};
+  if (res.empChange === "Malia Goodwin") {
+    await db.query(`UPDATE employee SET role_id = ${role} WHERE id = ${6}`)};
+  if (res.empChange === "Sarah Totten") {
+    await db.query(`UPDATE employee SET role_id = ${role} WHERE id = ${7}`)};
+  if (res.empChange === "Tom Leal") {
+    await db.query(`UPDATE employee SET role_id = ${role} WHERE id = ${8}`)};
+
+  console.log(`\n Employee Role Changed!\n`);
+  promptUser();
+};
 
 // Function to display hello on initialize.
  const init = () => {
