@@ -23,6 +23,8 @@ Use arrows on the keyboard and the enter key to navigate the menus. View employe
 - [Requires npm installation.](https://docs.npmjs.com/cli/v9/commands/npm-install)
 - [Requires inquirer package installation.](https://www.npmjs.com/package/inquirer)
 - [Requires console table package installation.](https://www.npmjs.com/package/console.table)
+- TO DEMO: Clone Repo locally, then in terminal type 'npm i'.
+- After dependencies are installed, in terminal type 'npm start'.
 
 ## Testing
 No testing required.
